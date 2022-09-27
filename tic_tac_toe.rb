@@ -1,36 +1,35 @@
 #Tic Tac Toe Ruby Project
+require 'pry-byebug'
+
+$LINES = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
 
 
-class Game 
-    #Game Loop Class 
-    def initialize
-        @board = Board.new 
-
-        start_game 
-    end 
-
-    def start_game
-        puts @board
-    end
-
-end
 
 class Player
+
+    attr_accessor :player
     def initialize
+        puts "Player created"
     end
 end
 
 class Board 
-
-    BOARD_HEIGHT = 3
-    BOARD_WIDTH = 3
-
-
+    attr_accessor :board
 
     def initialize
-        @board = Array.new(BOARD_HEIGHT, Array.new(BOARD_WIDTH))
-        p @board
+        @board = Array.new(9) {|i| i.to_s }
+    end
+
+    def show_board
+            puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
+            puts "-----------"
+            puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+            puts "-----------"
+            puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
     end
 end
 
-Game.new 
+board = Board.new 
+player1 = Player.new 
+
+board.show_board
