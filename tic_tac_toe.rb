@@ -42,3 +42,25 @@ game = Game.new
 player1 = Player.new('Sam', 'X') 
 
 game.show_board()
+
+#board = [1,2,3,4,5,6,7,8,9]
+#puts board 
+
+#def update_board(board)
+#  updated_board = []
+#  input = gets.to_i
+ # marker = "X"
+  #board.each do |cell|
+  #  if cell == input
+   #   cell = marker
+    #  updated_board << cell
+     # puts "Cell is now marker. Cell is #{cell}"
+    #else
+     # updated_board << cell
+    #end
+    
+  #end
+  #puts updated_board
+#end
+
+#update_board(board)
