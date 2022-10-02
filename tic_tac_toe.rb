@@ -15,20 +15,23 @@ class Player
        # puts "#{self.name} is player using #{self.marker}"
     end
 
-    
-
     def player_selection
         selection = gets.to_i
     end
 end
 
+
+
 class Game      
     attr_accessor :board
+    attr_reader :current_player_id
     turn_count = 1
+    
 
     def initialize
         @board = Array.new(9) {|i| i.to_s }
-        @player = Player.new(self, "Sam", "X")
+        @players = [Player.new(self, "Sam", "X"), Player.new(self, "Misato", "O")]
+        @current_player_id = 0
     end
 
     def show_board()
@@ -45,12 +48,20 @@ class Game
 
     def place_marker(player)
         position = player.player_selection
-        puts "#{player} selects #{player.marker} position #{position}"
+        puts "#{player.name} selects #{player.marker} position #{position}"
         @board[position] = player.marker
     end
 
     def current_player
-        @player
+        @players[current_player_id]
+      end
+
+      def other_player_id
+        1 - @current_player_id
+      end
+      
+      def switch_players!
+        @current_player_id = other_player_id
       end
 
     def play
