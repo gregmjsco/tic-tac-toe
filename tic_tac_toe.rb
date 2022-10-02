@@ -7,17 +7,18 @@ $LINES = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
 
 class Player
 
-    attr_accessor :name, :marker
+    attr_reader :name, :marker
     def initialize(name, marker)
         @name = name 
         @marker = marker
-        puts "#{self.name} is player using #{self.marker}"
+       # puts "#{self.name} is player using #{self.marker}"
     end
 
     
 
-    def user_input
-        gets.to_i
+    def player_selection
+        selection = gets.to_i
+        return selection
     end
 end
 
@@ -27,6 +28,7 @@ class Game
 
     def initialize
         @board = Array.new(9) {|i| i.to_s }
+        @player = Player.new("Sam", "X")
     end
 
     def show_board()
@@ -36,12 +38,31 @@ class Game
             puts "-----------"
             puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
     end
+
+    def place_marker(player)
+        position = player.player_selection
+        puts "#{player} selects #{player.marker} position #{position}"
+        @board[position] = player.marker
+    end
+
+    def current_player
+        @player
+      end
+
+    def play
+            place_marker(current_player)
+            show_board()
+    end
+
 end
 
 game = Game.new 
 player1 = Player.new('Sam', 'X') 
+player2 = Player.new('Misato', 'O')
+
 
 game.show_board()
+game.play
 
 #board = [1,2,3,4,5,6,7,8,9]
 #puts board 
